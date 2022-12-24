@@ -1,7 +1,7 @@
 {
-  "name": "react-webpack-starter",
+  "name": "pogmodoro-clock",
   "version": "1.0.0",
-  "description": "boilerplate-for-react-apps",
+  "description": "Pomodoro clock with all the needed features",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
