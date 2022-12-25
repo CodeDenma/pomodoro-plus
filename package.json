@@ -1,7 +1,7 @@
 {
-  "name": "pogmodoro-clock",
+  "name": "pomodoro-plus",
   "version": "1.0.0",
-  "description": "Pomodoro clock with all the needed features",
+  "description": "Pomodoro clock with nice-to-have features",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -10,6 +10,11 @@
   "author": "Henry Park",
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.1",
+    "@mui/system": "^5.11.1",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",

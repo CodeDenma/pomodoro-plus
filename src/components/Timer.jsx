@@ -7,6 +7,7 @@ import SettingsButton from "./SettingsButton.jsx";
 
 import { useContext, useEffect, useRef, useState } from "react";
 import SettingsContext from "../context/SettingsContext.jsx";
+import PlayCircle from "@mui/icons-material/PlayCircle.js";
 
 const red = "#f54e4e";
 const green = "#4aec8c";
@@ -75,22 +76,11 @@ function Timer() {
   }
 
   const progressBarStyle = {
-    // Rotation of path and trail, in number of turns (0-1)
     rotation: 0.25,
-
-    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
     strokeLinecap: "butt",
-
-    // Text size
     textSize: "20px",
-
-    // How long animation takes to go from one percentage to another, in seconds
     pathTransitionDuration: 0.5,
-
-    // Can specify path transition in more detail, or remove it entirely
     // pathTransition: 'none',
-
-    // Colors
     pathColor: mode === "work" ? red : green,
     textColor: "#fff",
     trailColor: "rgba(255, 255, 255, .2)",
@@ -104,15 +94,21 @@ function Timer() {
         text={`${minutes}:${seconds}`}
         styles={buildStyles(progressBarStyle)}
       />
-      <div style={{ marginTop: "20px" }}>
+      <div className="control-buttons" style={{ marginTop: "20px" }}>
         {isPaused
           ? (
-            <PlayButton
+            <PlayCircle
               onClick={() => {
                 setIsPaused(false);
                 isPausedRef.current = false;
               }}
             />
+            // <PlayButton
+            //   onClick={() => {
+            //     setIsPaused(false);
+            //     isPausedRef.current = false;
+            //   }}
+            // />
           )
           : (
             <PauseButton
