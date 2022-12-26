@@ -4,6 +4,7 @@ import Slider from "@mui/material/Slider";
 
 import { useContext } from "react";
 import SettingsContext from "../context/SettingsContext.jsx";
+import { common } from "@mui/material/colors";
 
 function valuetext(value) {
   return `${value} Minutes`;
@@ -12,16 +13,24 @@ function valuetext(value) {
 export default function TimeSlider({ value, marks, handleSliderChange }) {
   const settings = useContext(SettingsContext);
 
-  let count = 0;
+  const boxStyle = {
+    width: 300,
+    border: 1,
+    borderColor: "yellow",
+    padding: 3,
+  };
+
+  const sliderStyle = {
+    // color: common.white,
+  };
 
   return (
-    <Box sx={{ width: 300 }}>
+    <Box sx={boxStyle}>
       <Slider
-        key={`slider-${count++}`}
+        sx={sliderStyle}
+        value={value}
         onChange={handleSliderChange}
         aria-label="Custom marks"
-        // defaultValue={defaultValue}
-        value={value}
         getAriaValueText={valuetext}
         step={1}
         valueLabelDisplay="auto"

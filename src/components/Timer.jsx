@@ -9,15 +9,19 @@ import SettingsContext from "../context/SettingsContext.jsx";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle.js";
 import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
+import FastForwardIcon from "@mui/icons-material/FastForward";
+import StopIcon from "@mui/icons-material/Stop";
 
-const red = "#f54e4e";
-const green = "#4aec8c";
+// const red = "#f54e4e";
+const red = "#f44336";
+// const green = "#4aec8c";
+const green = "#43a047";
 
 function Timer() {
   const settings = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
-  const [mode, setMode] = useState("work"); // work/break/null
+  const [mode, setMode] = useState("focus"); // focus/break/null
   const [secondsLeft, setSecondsLeft] = useState(0);
 
   const secondsLeftRef = useRef(secondsLeft);
@@ -29,22 +33,22 @@ function Timer() {
     setSecondsLeft(secondsLeftRef.current);
   }
 
+  function switchMode() {
+    const nextMode = modeRef.current === "focus" ? "break" : "focus";
+
+    const nextSeconds =
+      (nextMode === "focus" ? settings.focusMinutes : settings.breakMinutes) *
+      60;
+
+    setMode(nextMode);
+    modeRef.current = nextMode;
+
+    setSecondsLeft(nextSeconds);
+    secondsLeftRef.current = nextSeconds;
+  }
+
   useEffect(() => {
-    function switchMode() {
-      const nextMode = modeRef.current === "work" ? "break" : "work";
-
-      const nextSeconds =
-        (nextMode === "work" ? settings.workMinutes : settings.breakMinutes) *
-        60;
-
-      setMode(nextMode);
-      modeRef.current = nextMode;
-
-      setSecondsLeft(nextSeconds);
-      secondsLeftRef.current = nextSeconds;
-    }
-
-    secondsLeftRef.current = settings.workMinutes * 60;
+    secondsLeftRef.current = settings.focusMinutes * 60;
     setSecondsLeft(secondsLeftRef.current);
 
     const interval = setInterval(() => {
@@ -53,6 +57,8 @@ function Timer() {
       }
 
       if (secondsLeftRef.current === 0) {
+        isPausedRef.current = true;
+        setIsPaused(isPausedRef);
         return switchMode();
       }
 
@@ -62,8 +68,8 @@ function Timer() {
     return () => clearInterval(interval);
   }, [settings]);
 
-  const totalSeconds = mode === "work"
-    ? settings.workMinutes * 60
+  const totalSeconds = mode === "focus"
+    ? settings.focusMinutes * 60
     : settings.breakMinutes * 60;
 
   const percentage = Math.round(secondsLeft / totalSeconds * 100);
@@ -81,20 +87,32 @@ function Timer() {
     textSize: "20px",
     pathTransitionDuration: 0.5,
     // pathTransition: 'none',
-    pathColor: mode === "work" ? red : green,
+    pathColor: mode === "focus" ? red : green,
     textColor: "#fff",
     trailColor: "rgba(255, 255, 255, .2)",
     backgroundColor: "#3e98c7",
   };
 
+  function stop() {
+    isPausedRef.current = true;
+    setIsPaused(isPausedRef.current);
+
+    secondsLeftRef.current = settings.focusMinutes * 60;
+    setSecondsLeft(secondsLeftRef.current);
+
+    setMode("focus");
+    modeRef.current = "focus";
+  }
+
   return (
-    <div>
+    <div id="timer">
       <CircularProgressbar
         value={percentage}
         text={`${minutes}:${seconds}`}
         styles={buildStyles(progressBarStyle)}
       />
       <div className="control-buttons" style={{ marginTop: "20px" }}>
+        <StopIcon onClick={stop} />
         {isPaused
           ? (
             <PlayCircleIcon
@@ -112,6 +130,7 @@ function Timer() {
               }}
             />
           )}
+        <FastForwardIcon onClick={switchMode} />
       </div>
       <div className="control-buttons">
         <SettingsIcon

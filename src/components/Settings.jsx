@@ -10,7 +10,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 function Settings() {
   const settings = useContext(SettingsContext);
 
-  const workMarks = [
+  const focusMarks = [
     {
       value: 25,
       label: "25",
@@ -41,27 +41,28 @@ function Settings() {
   };
 
   return (
-    <div className="sliders">
-      {/* <div style={{ textAlign: "left" }}> */}
+    <div id="settings">
+      <div className="sliders">
+        {/* <div style={{ textAlign: "left" }}> */}
 
-      <TimeSlider
-        value={settings.workMinutes}
-        marks={workMarks}
-        handleSliderChange={handleWorkChange}
-      />
-      <TimeSlider
-        value={settings.breakMinutes}
-        marks={breakMarks}
-        handleSliderChange={handleBreakChange}
-      />
+        <TimeSlider
+          value={settings.focusMinutes}
+          marks={focusMarks}
+          handleSliderChange={handleWorkChange}
+        />
+        <TimeSlider
+          value={settings.breakMinutes}
+          marks={breakMarks}
+          handleSliderChange={handleBreakChange}
+        />
 
-      {/* <label>work: {settings.workMinutes}:00</label> */}
-      {
-        /* <ReactSlider
+        {/* <label>focus: {settings.focusMinutes}:00</label> */}
+        {
+          /* <ReactSlider
         className={"slider"}
         thumbClassName={"thumb"}
         trackClassName={"track"}
-        value={settings.workMinutes}
+        value={settings.focusMinutes}
         onChange={(newValue) => settings.setWorkMinutes(newValue)}
         min={1}
         max={120}
@@ -76,14 +77,14 @@ function Settings() {
         min={1}
         max={120}
       /> */
-      }
+        }
 
-      <div
-        className="back-button"
-        onClick={() => settings.setShowSettings(false)}
-      >
-        {
-          /* <div
+        <div
+          className="back-button"
+          onClick={() => settings.setShowSettings(false)}
+        >
+          {
+            /* <div
         style={{
           textAlign: "center",
           marginTop: "20px",
@@ -93,11 +94,12 @@ function Settings() {
           alignItems: "center",
         }}
       > */
-        }
-        <ArrowBackIcon />
-        Back
+          }
+          <ArrowBackIcon />
+          Back
 
-        {/* <BackButton onClick={() => settings.setShowSettings(false)} /> */}
+          {/* <BackButton onClick={() => settings.setShowSettings(false)} /> */}
+        </div>
       </div>
     </div>
   );

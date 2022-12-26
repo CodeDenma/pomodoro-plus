@@ -1,25 +1,37 @@
+@use './styles/colors' as colors;
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-:root {
-  --red: #f54e4e;
-  --green: #4aec8c;
-}
+// :root {
+//   --red: #f54e4e;
+//   --green: #4aec8c;
+// }
+
+
 
 * {
   margin: 0;
   padding: 0;
 
   font-family: 'Roboto', sans-serif;
-  // color: white;
+  // color: #fff;
+}
+
+#timer {
+  color: #fff;
+}
+
+#settings {
+  color: #fff;
 }
 
 
 body {
   // background-color: #30384b;
   background-color: #263238;
+  // background-color: #78909c;
 
-  color: #eee;
-  // color: black;
+
+  // color: #eee;
 }
 
 main {
@@ -37,7 +49,8 @@ main {
 
 button {
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.8);
+  // color: rgba(255, 255, 255, 0.8);
+  color: black;
   border: 0;
   display: inline-block;
   width: 5vw;
@@ -74,6 +87,7 @@ label {
 
   svg {
     font-size: 5vw;
+    cursor: pointer;
   }
 }
 
@@ -107,5 +121,6 @@ label {
   justify-content: center;
   align-items: center;
 
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
+  border: 2px solid colors.$green;
 }

@@ -9,11 +9,13 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 
 const theme = createTheme({
+
   palette: {
     primary: {
       light: '#757ce8',
       main: '#3f50b5',
       dark: '#002884',
+      // contrastText: '#fff',
       contrastText: '#fff',
     },
     secondary: {
@@ -28,20 +30,22 @@ const theme = createTheme({
 
 function App() {
   const [showSettings, setShowSettings] = useState(false);
-  const [workMinutes, setWorkMinutes] = useState(45);
-  const [breakMinutes, setBreakMinutes] = useState(15);
+  const [focusMinutes, setWorkMinutes] = useState(25);
+  const [breakMinutes, setBreakMinutes] = useState(5);
+
+  const value = {
+    focusMinutes,
+    breakMinutes,
+    setWorkMinutes,
+    setBreakMinutes,
+    showSettings,
+    setShowSettings
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <main>
-        <SettingsContext.Provider value={{
-          workMinutes,
-          breakMinutes,
-          setWorkMinutes,
-          setBreakMinutes,
-          showSettings,
-          setShowSettings
-        }}>
+        <SettingsContext.Provider value={value}>
           {showSettings ? <Settings /> : <Timer />}
         </SettingsContext.Provider>
       </main>
