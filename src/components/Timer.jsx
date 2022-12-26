@@ -1,19 +1,20 @@
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import React from "react";
-import PlayButton from "./PlayButton.jsx";
-import PauseButton from "./PauseButton.jsx";
 import SettingsButton from "./SettingsButton.jsx";
 
 import { useContext, useEffect, useRef, useState } from "react";
 import SettingsContext from "../context/SettingsContext.jsx";
-import PlayCircle from "@mui/icons-material/PlayCircle.js";
+
+import PlayCircleIcon from "@mui/icons-material/PlayCircle.js";
+import PauseCircleIcon from "@mui/icons-material/PauseCircle";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const red = "#f54e4e";
 const green = "#4aec8c";
 
 function Timer() {
-  const settingsInfo = useContext(SettingsContext);
+  const settings = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
   const [mode, setMode] = useState("work"); // work/break/null
@@ -32,9 +33,9 @@ function Timer() {
     function switchMode() {
       const nextMode = modeRef.current === "work" ? "break" : "work";
 
-      const nextSeconds = (nextMode === "work"
-        ? settingsInfo.workMinutes
-        : settingsInfo.breakMinutes) * 60;
+      const nextSeconds =
+        (nextMode === "work" ? settings.workMinutes : settings.breakMinutes) *
+        60;
 
       setMode(nextMode);
       modeRef.current = nextMode;
@@ -43,7 +44,7 @@ function Timer() {
       secondsLeftRef.current = nextSeconds;
     }
 
-    secondsLeftRef.current = settingsInfo.workMinutes * 60;
+    secondsLeftRef.current = settings.workMinutes * 60;
     setSecondsLeft(secondsLeftRef.current);
 
     const interval = setInterval(() => {
@@ -58,13 +59,12 @@ function Timer() {
       tick();
     }, 1000);
 
-    return () =>
-      clearInterval(interval);
-  }, [settingsInfo]);
+    return () => clearInterval(interval);
+  }, [settings]);
 
   const totalSeconds = mode === "work"
-    ? settingsInfo.workMinutes * 60
-    : settingsInfo.breakMinutes * 60;
+    ? settings.workMinutes * 60
+    : settings.breakMinutes * 60;
 
   const percentage = Math.round(secondsLeft / totalSeconds * 100);
 
@@ -97,21 +97,15 @@ function Timer() {
       <div className="control-buttons" style={{ marginTop: "20px" }}>
         {isPaused
           ? (
-            <PlayCircle
+            <PlayCircleIcon
               onClick={() => {
                 setIsPaused(false);
                 isPausedRef.current = false;
               }}
             />
-            // <PlayButton
-            //   onClick={() => {
-            //     setIsPaused(false);
-            //     isPausedRef.current = false;
-            //   }}
-            // />
           )
           : (
-            <PauseButton
+            <PauseCircleIcon
               onClick={() => {
                 setIsPaused(true);
                 isPausedRef.current = true;
@@ -119,8 +113,10 @@ function Timer() {
             />
           )}
       </div>
-      <div style={{ marginTop: "20px" }}>
-        <SettingsButton onClick={() => settingsInfo.setShowSettings(true)} />
+      <div className="control-buttons">
+        <SettingsIcon
+          onClick={() => settings.setShowSettings(true)}
+        />
       </div>
     </div>
   );

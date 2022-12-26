@@ -4,34 +4,100 @@ import "../styles/slider.scss";
 import SettingsContext from "../context/SettingsContext.jsx";
 import BackButton from "./BackButton.jsx";
 
+import TimeSlider from "./TimeSlider.jsx";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 function Settings() {
-  const settingsInfo = useContext(SettingsContext);
+  const settings = useContext(SettingsContext);
+
+  const workMarks = [
+    {
+      value: 25,
+      label: "25",
+    },
+    {
+      value: 60,
+      label: "60",
+    },
+  ];
+
+  const breakMarks = [
+    {
+      value: 5,
+      label: "5",
+    },
+    {
+      value: 10,
+      label: "10",
+    },
+  ];
+
+  const handleWorkChange = (e) => {
+    settings.setWorkMinutes(e.target.value);
+  };
+
+  const handleBreakChange = (e) => {
+    settings.setBreakMinutes(e.target.value);
+  };
 
   return (
-    <div style={{ textAlign: "left" }}>
-      <label>work: {settingsInfo.workMinutes}:00</label>
-      <ReactSlider
+    <div className="sliders">
+      {/* <div style={{ textAlign: "left" }}> */}
+
+      <TimeSlider
+        value={settings.workMinutes}
+        marks={workMarks}
+        handleSliderChange={handleWorkChange}
+      />
+      <TimeSlider
+        value={settings.breakMinutes}
+        marks={breakMarks}
+        handleSliderChange={handleBreakChange}
+      />
+
+      {/* <label>work: {settings.workMinutes}:00</label> */}
+      {
+        /* <ReactSlider
         className={"slider"}
         thumbClassName={"thumb"}
         trackClassName={"track"}
-        value={settingsInfo.workMinutes}
-        onChange={(newValue) => settingsInfo.setWorkMinutes(newValue)}
+        value={settings.workMinutes}
+        onChange={(newValue) => settings.setWorkMinutes(newValue)}
         min={1}
         max={120}
       />
-      <label>break: {settingsInfo.breakMinutes}:00</label>
+      <label>break: {settings.breakMinutes}:00</label>
       <ReactSlider
         className={"slider green"}
         thumbClassName={"thumb"}
         trackClassName={"track"}
-        value={settingsInfo.breakMinutes}
-        onChange={(newValue) => settingsInfo.setBreakMinutes(newValue)}
+        value={settings.breakMinutes}
+        onChange={(newValue) => settings.setBreakMinutes(newValue)}
         min={1}
         max={120}
-      />
+      /> */
+      }
 
-      <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <BackButton onClick={() => settingsInfo.setShowSettings(false)} />
+      <div
+        className="back-button"
+        onClick={() => settings.setShowSettings(false)}
+      >
+        {
+          /* <div
+        style={{
+          textAlign: "center",
+          marginTop: "20px",
+          fontsize: "5vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      > */
+        }
+        <ArrowBackIcon />
+        Back
+
+        {/* <BackButton onClick={() => settings.setShowSettings(false)} /> */}
       </div>
     </div>
   );
