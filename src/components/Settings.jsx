@@ -33,7 +33,7 @@ function Settings() {
   ];
 
   const handleWorkChange = (e) => {
-    settings.setWorkMinutes(e.target.value);
+    settings.setFocusMinutes(e.target.value);
   };
 
   const handleBreakChange = (e) => {
@@ -63,7 +63,7 @@ function Settings() {
         thumbClassName={"thumb"}
         trackClassName={"track"}
         value={settings.focusMinutes}
-        onChange={(newValue) => settings.setWorkMinutes(newValue)}
+        onChange={(newValue) => settings.setFocusMinutes(newValue)}
         min={1}
         max={120}
       />

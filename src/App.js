@@ -30,16 +30,27 @@ const theme = createTheme({
 
 function App() {
   const [showSettings, setShowSettings] = useState(false);
-  const [focusMinutes, setWorkMinutes] = useState(25);
+  const [focusMinutes, setFocusMinutes] = useState(25);
   const [breakMinutes, setBreakMinutes] = useState(5);
+
+  const [longBreakMinutes, setLongBreakMinutes] = useState(20);
+  const [count, setCount] = useState(0);
+  const [cycle, setCycle] = useState(4);
 
   const value = {
     focusMinutes,
     breakMinutes,
-    setWorkMinutes,
+    setFocusMinutes,
     setBreakMinutes,
     showSettings,
-    setShowSettings
+    setShowSettings,
+
+    longBreakMinutes,
+    setLongBreakMinutes,
+    count,
+    setCount,
+    cycle,
+    setCycle
   };
 
   return (

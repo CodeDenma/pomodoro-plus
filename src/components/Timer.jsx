@@ -21,7 +21,7 @@ function Timer() {
   const settings = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
-  const [mode, setMode] = useState("focus"); // focus/break/null
+  const [mode, setMode] = useState("focus"); // focus/break/longBreak
   const [secondsLeft, setSecondsLeft] = useState(0);
 
   const secondsLeftRef = useRef(secondsLeft);
@@ -34,11 +34,29 @@ function Timer() {
   }
 
   function switchMode() {
-    const nextMode = modeRef.current === "focus" ? "break" : "focus";
+    let nextMode, nextSeconds;
 
-    const nextSeconds =
-      (nextMode === "focus" ? settings.focusMinutes : settings.breakMinutes) *
-      60;
+    if (modeRef.current === "focus") {
+      if (settings.count === settings.cycle - 1) {
+        nextMode = "longBreak";
+        nextSeconds = settings.longBreakMinutes * 60;
+        settings.setCount(0);
+      } else {
+        nextMode = "break";
+        nextSeconds = settings.breakMinutes * 60;
+        settings.setCount(settings.count + 1);
+        console.log(settings.count);
+      }
+    } else {
+      nextMode = "focus";
+      nextSeconds = settings.focusMinutes * 60;
+    }
+
+    // const nextMode = modeRef.current === "focus" ? "break" : "focus";
+
+    // const nextSeconds =
+    //   (nextMode === "focus" ? settings.focusMinutes : settings.breakMinutes) *
+    //   60;
 
     setMode(nextMode);
     modeRef.current = nextMode;
@@ -68,9 +86,25 @@ function Timer() {
     return () => clearInterval(interval);
   }, [settings]);
 
-  const totalSeconds = mode === "focus"
-    ? settings.focusMinutes * 60
-    : settings.breakMinutes * 60;
+  // const totalSeconds = mode === "focus"
+  //   ? settings.focusMinutes * 60
+  //   : settings.breakMinutes * 60;
+
+  let totalSeconds;
+
+  switch (mode) {
+    case "focus":
+      totalSeconds = settings.focusMinutes * 60;
+      break;
+    case "break":
+      totalSeconds = settings.breakMinutes * 60;
+      break;
+    case "longBreak":
+      totalSeconds = settings.longBreakMinutes * 60;
+      break;
+    default:
+      break;
+  }
 
   const percentage = Math.round(secondsLeft / totalSeconds * 100);
 
