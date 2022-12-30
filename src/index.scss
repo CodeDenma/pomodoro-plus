@@ -1,12 +1,6 @@
 @use './styles/colors' as colors;
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-// :root {
-//   --red: #f54e4e;
-//   --green: #4aec8c;
-// }
-
-
 
 * {
   margin: 0;
@@ -27,8 +21,9 @@
 
 body {
   // background-color: #30384b;
-  background-color: #263238;
   // background-color: #78909c;
+  // background-color: #546e7a;
+  background-color: #263238;
 
 
   // color: #eee;
@@ -42,35 +37,37 @@ main {
   margin: 0 auto;
   text-align: center;
 
-  min-width: 340px;
+  // min-width: 340px;
+  min-width: 400px;
 
-  border: 2px solid red;
+  // border: 2px solid red;
 }
 
-button {
-  background-color: transparent;
-  // color: rgba(255, 255, 255, 0.8);
-  color: black;
-  border: 0;
-  display: inline-block;
-  width: 5vw;
-  cursor: pointer;
-}
+// button {
+//   background-color: transparent;
+//   // color: rgba(255, 255, 255, 0.8);
+//   // color: black;
+//   color: #607d8b;
+//   border: 0;
+//   display: inline-block;
+//   // width: 5vw;
+//   cursor: pointer;
+// }
 
-button.with-text {
-  width: auto;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 1rem;
-  padding: 0.8rem 1.5rem;
-  font-size: 1.4rem;
-  line-height: 2.3rem;
-}
+// button.with-text {
+//   width: auto;
+//   background-color: rgba(255, 255, 255, 0.1);
+//   border-radius: 1rem;
+//   padding: 0.8rem 1.5rem;
+//   font-size: 1.4rem;
+//   line-height: 2.3rem;
+// }
 
-button.with-text svg {
-  width: 2.2rem;
-  float: left;
-  margin-right: 0.3rem;
-}
+// button.with-text svg {
+//   width: 2.2rem;
+//   float: left;
+//   margin-right: 0.3rem;
+// }
 
 label {
   display: block;
@@ -81,13 +78,37 @@ label {
 
 .control-buttons {
   margin-top: 2vh;
-  width: 25vw;
-
-  border: 2px solid red;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   svg {
+    // min-width: 100px;
+    // min-height: 100px;
+    width: 25%;
+    height: 25%;
+
     font-size: 5vw;
     cursor: pointer;
+  }
+
+  button {
+    background-color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+    // background-color: transparent;
+    // color: rgba(255, 255, 255, 0.8);
+    // color: black;
+
+    color: colors.$background-color;
+    border: 0;
+    // display: inline-block;
+    // width: 5vw;
+    cursor: pointer;
+    font-size: 1.8rem;
   }
 }
 
@@ -123,4 +144,10 @@ label {
 
   // border: 2px solid yellow;
   border: 2px solid colors.$green;
+
+  span {
+    .MuiSlider-markLabel {
+      color: #fff;
+    }
+  }
 }

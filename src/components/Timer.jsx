@@ -17,6 +17,8 @@ const red = "#f44336";
 // const green = "#4aec8c";
 const green = "#43a047";
 
+const blue = "#6f74dd";
+
 function Timer() {
   const settings = useContext(SettingsContext);
 
@@ -45,7 +47,6 @@ function Timer() {
         nextMode = "break";
         nextSeconds = settings.breakMinutes * 60;
         settings.setCount(settings.count + 1);
-        console.log(settings.count);
       }
     } else {
       nextMode = "focus";
@@ -66,7 +67,14 @@ function Timer() {
   }
 
   useEffect(() => {
-    secondsLeftRef.current = settings.focusMinutes * 60;
+    if (mode === "focus") {
+      secondsLeftRef.current = settings.focusMinutes * 60;
+    } else if (mode === "break") {
+      secondsLeftRef.current = settings.breakMinutes * 60;
+    } else {
+      secondsLeftRef.current = settings.longBreakMinutes * 60;
+    }
+
     setSecondsLeft(secondsLeftRef.current);
 
     const interval = setInterval(() => {
@@ -86,7 +94,7 @@ function Timer() {
     return () => clearInterval(interval);
   }, [settings]);
 
-  // const totalSeconds = mode === "focus"
+  // ! const totalSeconds = mode === "focus"
   //   ? settings.focusMinutes * 60
   //   : settings.breakMinutes * 60;
 
@@ -106,6 +114,8 @@ function Timer() {
       break;
   }
 
+  // console.log(mode, totalSeconds);
+
   const percentage = Math.round(secondsLeft / totalSeconds * 100);
 
   const minutes = Math.floor(secondsLeft / 60);
@@ -121,7 +131,7 @@ function Timer() {
     textSize: "20px",
     pathTransitionDuration: 0.5,
     // pathTransition: 'none',
-    pathColor: mode === "focus" ? red : green,
+    pathColor: mode === "focus" ? red : mode === "break" ? green : blue,
     textColor: "#fff",
     trailColor: "rgba(255, 255, 255, .2)",
     backgroundColor: "#3e98c7",
@@ -138,6 +148,16 @@ function Timer() {
     modeRef.current = "focus";
   }
 
+  function plusOne() {
+    secondsLeftRef.current += 60;
+    setSecondsLeft(secondsLeftRef.current);
+  }
+
+  function plusFive() {
+    secondsLeftRef.current += 60 * 5;
+    setSecondsLeft(secondsLeftRef.current);
+  }
+
   return (
     <div id="timer">
       <CircularProgressbar
@@ -146,6 +166,9 @@ function Timer() {
         styles={buildStyles(progressBarStyle)}
       />
       <div className="control-buttons" style={{ marginTop: "20px" }}>
+        <button onClick={plusOne}>
+          +1
+        </button>
         <StopIcon onClick={stop} />
         {isPaused
           ? (
@@ -165,6 +188,9 @@ function Timer() {
             />
           )}
         <FastForwardIcon onClick={switchMode} />
+        <button onClick={plusFive}>
+          +5
+        </button>
       </div>
       <div className="control-buttons">
         <SettingsIcon

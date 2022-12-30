@@ -40,6 +40,10 @@ function Settings() {
     settings.setBreakMinutes(e.target.value);
   };
 
+  const handleLongBreakChange = (e) => {
+    settings.setLongBreakMinutes(e.target.value);
+  };
+
   return (
     <div id="settings">
       <div className="sliders">
@@ -50,10 +54,17 @@ function Settings() {
           marks={focusMarks}
           handleSliderChange={handleWorkChange}
         />
+
         <TimeSlider
           value={settings.breakMinutes}
           marks={breakMarks}
           handleSliderChange={handleBreakChange}
+        />
+
+        <TimeSlider
+          value={settings.longBreakMinutes}
+          marks={breakMarks}
+          handleSliderChange={handleLongBreakChange}
         />
 
         {/* <label>focus: {settings.focusMinutes}:00</label> */}

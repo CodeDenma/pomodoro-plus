@@ -9,7 +9,6 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 
 const theme = createTheme({
-
   palette: {
     primary: {
       light: '#757ce8',
