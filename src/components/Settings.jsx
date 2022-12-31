@@ -5,6 +5,7 @@ import SettingsContext from "../context/SettingsContext.jsx";
 import BackButton from "./BackButton.jsx";
 
 import TimeSlider from "./TimeSlider.jsx";
+import CycleSlider from "./CycleSlider.jsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function Settings() {
@@ -32,6 +33,24 @@ function Settings() {
     },
   ];
 
+  const longBreakMarks = [
+    {
+      value: 15,
+      label: "15",
+    },
+    {
+      value: 20,
+      label: "20",
+    },
+  ];
+
+  const cycleMarks = [
+    {
+      value: 4,
+      label: "4",
+    },
+  ];
+
   const handleWorkChange = (e) => {
     settings.setFocusMinutes(e.target.value);
   };
@@ -44,27 +63,40 @@ function Settings() {
     settings.setLongBreakMinutes(e.target.value);
   };
 
+  const handleCycleChange = (e) => {
+    settings.setCycle(e.target.value);
+  };
+
   return (
     <div id="settings">
       <div className="sliders">
         {/* <div style={{ textAlign: "left" }}> */}
-
+        Focus Minutes
         <TimeSlider
           value={settings.focusMinutes}
           marks={focusMarks}
           handleSliderChange={handleWorkChange}
         />
 
+        Short Break Minutes
         <TimeSlider
           value={settings.breakMinutes}
           marks={breakMarks}
           handleSliderChange={handleBreakChange}
         />
 
+        Long Break Minutes
         <TimeSlider
           value={settings.longBreakMinutes}
-          marks={breakMarks}
+          marks={longBreakMarks}
           handleSliderChange={handleLongBreakChange}
+        />
+
+        Number of Focus Sessions before Long Break
+        <CycleSlider
+          value={settings.cycle}
+          marks={cycleMarks}
+          handleSliderChange={handleCycleChange}
         />
 
         {/* <label>focus: {settings.focusMinutes}:00</label> */}

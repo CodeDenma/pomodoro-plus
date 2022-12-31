@@ -14,10 +14,8 @@ export default function TimeSlider({ value, marks, handleSliderChange }) {
 
   const boxStyle = {
     width: "80%",
-    // border: 1,
-    // borderColor: "yellow",
     padding: 3,
-    // margin: "0 0 5px 0",
+    margin: "5px 0",
   };
 
   return (
@@ -31,7 +29,7 @@ export default function TimeSlider({ value, marks, handleSliderChange }) {
         valueLabelDisplay="auto"
         marks={marks}
         min={1}
-        max={60}
+        max={10}
       />
     </Box>
   );

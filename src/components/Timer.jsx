@@ -166,7 +166,7 @@ function Timer() {
         styles={buildStyles(progressBarStyle)}
       />
       <div className="control-buttons" style={{ marginTop: "20px" }}>
-        <button onClick={plusOne}>
+        <button onClick={plusOne} style={{ marginRight: "10px" }}>
           +1
         </button>
         <StopIcon onClick={stop} />
@@ -188,7 +188,10 @@ function Timer() {
             />
           )}
         <FastForwardIcon onClick={switchMode} />
-        <button onClick={plusFive}>
+        <button
+          onClick={plusFive}
+          style={{ marginLeft: "10px" }}
+        >
           +5
         </button>
       </div>
