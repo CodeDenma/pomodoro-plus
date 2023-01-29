@@ -1,7 +1,7 @@
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import React from "react";
-import SettingsButton from "./SettingsButton.jsx";
+// import SettingsButton from "./SettingsButton.jsx";
 
 import { useContext, useEffect, useRef, useState } from "react";
 import SettingsContext from "../context/SettingsContext.jsx";
@@ -11,6 +11,11 @@ import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import StopIcon from "@mui/icons-material/Stop";
+import IconButton from "@mui/material/IconButton";
+
+import Button from "@mui/material/Button";
+
+import sound from "../assets/alert.wav";
 
 // const red = "#f54e4e";
 const red = "#f44336";
@@ -29,6 +34,10 @@ function Timer() {
   const secondsLeftRef = useRef(secondsLeft);
   const isPausedRef = useRef(isPaused);
   const modeRef = useRef(mode);
+
+  function playSound() {
+    new Audio(sound).play();
+  }
 
   function tick() {
     secondsLeftRef.current--;
@@ -64,6 +73,8 @@ function Timer() {
 
     setSecondsLeft(nextSeconds);
     secondsLeftRef.current = nextSeconds;
+
+    playSound();
   }
 
   useEffect(() => {
@@ -113,8 +124,6 @@ function Timer() {
     default:
       break;
   }
-
-  // console.log(mode, totalSeconds);
 
   const percentage = Math.round(secondsLeft / totalSeconds * 100);
 
@@ -195,11 +204,13 @@ function Timer() {
           +5
         </button>
       </div>
-      <div className="control-buttons">
+      {
+        /* <div className="control-buttons">
         <SettingsIcon
           onClick={() => settings.setShowSettings(true)}
         />
-      </div>
+      </div> */
+      }
     </div>
   );
 }

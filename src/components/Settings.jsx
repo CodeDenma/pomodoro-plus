@@ -92,57 +92,19 @@ function Settings() {
           handleSliderChange={handleLongBreakChange}
         />
 
-        Number of Focus Sessions before Long Break
+        Number of Focus Sessions
         <CycleSlider
           value={settings.cycle}
           marks={cycleMarks}
           handleSliderChange={handleCycleChange}
         />
-
-        {/* <label>focus: {settings.focusMinutes}:00</label> */}
-        {
-          /* <ReactSlider
-        className={"slider"}
-        thumbClassName={"thumb"}
-        trackClassName={"track"}
-        value={settings.focusMinutes}
-        onChange={(newValue) => settings.setFocusMinutes(newValue)}
-        min={1}
-        max={120}
-      />
-      <label>break: {settings.breakMinutes}:00</label>
-      <ReactSlider
-        className={"slider green"}
-        thumbClassName={"thumb"}
-        trackClassName={"track"}
-        value={settings.breakMinutes}
-        onChange={(newValue) => settings.setBreakMinutes(newValue)}
-        min={1}
-        max={120}
-      /> */
-        }
-
-        <div
-          className="back-button"
-          onClick={() => settings.setShowSettings(false)}
-        >
-          {
-            /* <div
-        style={{
-          textAlign: "center",
-          marginTop: "20px",
-          fontsize: "5vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      > */
-          }
-          <ArrowBackIcon />
-          Back
-
-          {/* <BackButton onClick={() => settings.setShowSettings(false)} /> */}
-        </div>
+      </div>
+      <div
+        className="back-button"
+        onClick={() => settings.setShowSettings(false)}
+      >
+        <ArrowBackIcon />
+        Back
       </div>
     </div>
   );

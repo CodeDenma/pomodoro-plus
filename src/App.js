@@ -8,6 +8,8 @@ import SettingsContext from './context/SettingsContext.jsx';
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@emotion/react';
 
+import NavBar from './components/NavBar';
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -54,12 +56,13 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <main>
-        <SettingsContext.Provider value={value}>
+      <SettingsContext.Provider value={value}>
+        <NavBar />
+        <main>
           {showSettings ? <Settings /> : <Timer />}
-        </SettingsContext.Provider>
-      </main>
-    </ThemeProvider>
+        </main>
+      </SettingsContext.Provider>
+    </ThemeProvider >
   );
 }
 

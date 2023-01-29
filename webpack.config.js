@@ -49,6 +49,12 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.(wav|mp3|aac)$/,
+        use: {
+          loader: 'file-loader'
+        }
+      }
     ],
   },
   plugins: [

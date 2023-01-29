@@ -1,25 +1,25 @@
-@use 'colors' as colors;
+// @use 'colors' as colors;
 
 
-.slider {
-  height: 40px;
-  border: 2px solid var(--red);
-  border: 2px solid colors.$green;
-  border-radius: 20px;
-}
+// .slider {
+//   height: 40px;
+//   border: 2px solid var(--red);
+//   border: 2px solid colors.$green;
+//   border-radius: 20px;
+// }
 
-.thumb {
-  background-color: var(--red);
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
+// .thumb {
+//   background-color: var(--red);
+//   cursor: pointer;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 20px;
+// }
 
-.slider.green {
-  border: 2px solid var(--green);
+// .slider.green {
+//   border: 2px solid var(--green);
 
-  .thumb {
-    background-color: var(--green);
-  }
-}
+//   .thumb {
+//     background-color: var(--green);
+//   }
+// }
