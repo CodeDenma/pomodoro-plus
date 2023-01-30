@@ -1,4 +1,5 @@
-@use './styles/colors' as colors;
+// @use './styles/colors' as colors;
+@use './styles/colors.module' as colors;
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 
@@ -29,12 +30,14 @@
 #timer {
   color: #fff;
   user-select: none;
+
 }
 
 #settings {
   color: #fff;
   // border: 2px solid red;
-  border: 2px solid colors.$green;
+  // border: 2px solid colors.$green;
+  border: 1px solid rgba(211, 211, 211, 0.3);
   border-radius: 5%;
   padding: 20px;
 
@@ -79,37 +82,39 @@ main {
   // border: 2px solid red;
 }
 
-// button {
-//   background-color: transparent;
-//   // color: rgba(255, 255, 255, 0.8);
-//   // color: black;
-//   color: #607d8b;
-//   border: 0;
-//   display: inline-block;
-//   // width: 5vw;
-//   cursor: pointer;
+// label {
+//   display: block;
+//   margin-bottom: 0.7rem;
+//   margin-top: 2vh;
+//   text-transform: capitalize;
 // }
 
-// button.with-text {
-//   width: auto;
-//   background-color: rgba(255, 255, 255, 0.1);
-//   border-radius: 1rem;
-//   padding: 0.8rem 1.5rem;
-//   font-size: 1.4rem;
-//   line-height: 2.3rem;
-// }
+#template-labels {
+  // div {
+  //   outline: 1px solid rgba(255, 255, 255, 0.1);
 
-// button.with-text svg {
-//   width: 2.2rem;
-//   float: left;
-//   margin-right: 0.3rem;
-// }
+  // }
 
-label {
-  display: block;
-  margin-bottom: 0.7rem;
-  margin-top: 2vh;
-  text-transform: capitalize;
+  // fieldset {
+  //   border-color: none;
+
+  //   :hover {
+  //     border-color: none;
+  //   }
+  // }
+
+  * {
+    color: white;
+    border-color: white;
+  }
+
+  margin-bottom: 0.5rem;
+}
+
+.session-info {
+  margin-bottom: 1.4rem;
+  font-size: 2rem;
+
 }
 
 .control-buttons {
@@ -175,21 +180,16 @@ label {
 }
 
 .sliders {
-  // width: 100%;
-  // width: 20vw;
-  // margin: 1vh 10%;
-  // padding: 20px;
-  // height: 40vh;
-
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  // border: 2px solid yellow;
-  // border: 2px solid colors.$green;
-
+  // width: 100%;
+  // width: 20vw;
+  // margin: 1vh 10%;
+  // padding: 20px;
+  // height: 40vh;
 
   .MuiBox-root.css-mb1ddy {
     margin: 0 0 2rem 0;
@@ -204,8 +204,6 @@ label {
   span {
     margin: 0;
     // padding: 0;
-
-    // border: 2px solid red;
 
     .MuiSlider-markLabel {
       color: #fff;

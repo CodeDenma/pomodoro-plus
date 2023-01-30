@@ -39,10 +39,8 @@ export default function NavBar() {
             >
               <MenuIcon />
             </IconButton> */}
-            <IconButton>
-              <SettingsIcon
-                onClick={() => settings.setShowSettings(!settings.showSettings)}
-              />
+            <IconButton onClick={() => settings.setShowSettings(!settings.showSettings)}>
+              <SettingsIcon />
             </IconButton>
             <Button color="inherit">Login</Button>
           </Toolbar>

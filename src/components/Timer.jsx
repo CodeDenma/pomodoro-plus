@@ -17,6 +17,8 @@ import Button from "@mui/material/Button";
 
 import sound from "../assets/alert.wav";
 
+import TemplateLabels from "./TemplateLabels.js";
+
 // const red = "#f54e4e";
 const red = "#f44336";
 // const green = "#4aec8c";
@@ -48,20 +50,23 @@ function Timer() {
     let nextMode, nextSeconds;
 
     if (modeRef.current === "focus") {
-      if (settings.count === settings.cycle - 1) {
+      if (settings.count === settings.cycle) {
         nextMode = "longBreak";
         nextSeconds = settings.longBreakMinutes * 60;
-        settings.setCount(0);
       } else {
         nextMode = "break";
         nextSeconds = settings.breakMinutes * 60;
-        settings.setCount(settings.count + 1);
       }
     } else {
       nextMode = "focus";
       nextSeconds = settings.focusMinutes * 60;
-    }
 
+      if (modeRef.current === "longBreak") {
+        settings.setCount(1);
+      } else {
+        settings.setCount(settings.count + 1);
+      }
+    }
     // const nextMode = modeRef.current === "focus" ? "break" : "focus";
 
     // const nextSeconds =
@@ -104,10 +109,6 @@ function Timer() {
 
     return () => clearInterval(interval);
   }, [settings]);
-
-  // ! const totalSeconds = mode === "focus"
-  //   ? settings.focusMinutes * 60
-  //   : settings.breakMinutes * 60;
 
   let totalSeconds;
 
@@ -155,6 +156,8 @@ function Timer() {
 
     setMode("focus");
     modeRef.current = "focus";
+
+    settings.setCount(1);
   }
 
   function plusOne() {
@@ -169,6 +172,11 @@ function Timer() {
 
   return (
     <div id="timer">
+      <TemplateLabels />
+      <div className="session-info">
+        Session {settings.count} of {settings.cycle}
+      </div>
+
       <CircularProgressbar
         value={percentage}
         text={`${minutes}:${seconds}`}
@@ -204,13 +212,6 @@ function Timer() {
           +5
         </button>
       </div>
-      {
-        /* <div className="control-buttons">
-        <SettingsIcon
-          onClick={() => settings.setShowSettings(true)}
-        />
-      </div> */
-      }
     </div>
   );
 }

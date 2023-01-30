@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import ReactSlider from "react-slider";
-import "../styles/slider.scss";
 import SettingsContext from "../context/SettingsContext.jsx";
 import BackButton from "./BackButton.jsx";
 
@@ -70,7 +69,6 @@ function Settings() {
   return (
     <div id="settings">
       <div className="sliders">
-        {/* <div style={{ textAlign: "left" }}> */}
         Focus Minutes
         <TimeSlider
           value={settings.focusMinutes}
