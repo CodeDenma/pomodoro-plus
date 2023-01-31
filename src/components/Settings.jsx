@@ -7,6 +7,13 @@ import TimeSlider from "./TimeSlider.jsx";
 import CycleSlider from "./CycleSlider.jsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+import TemplateLabels from "./TemplateLabels.js";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
+import DeleteModal from "./DeleteModal.js";
+
 function Settings() {
   const settings = useContext(SettingsContext);
 
@@ -52,22 +59,70 @@ function Settings() {
 
   const handleWorkChange = (e) => {
     settings.setFocusMinutes(e.target.value);
+
+    const templateLabel = settings.templateLabel;
+
+    const templatesCopy = JSON.parse(JSON.stringify(settings.templates));
+
+    templatesCopy[templateLabel].focus = e.target.value;
+
+    settings.setTemplates(templatesCopy);
+
+    // console.log(settings.templates);
   };
 
   const handleBreakChange = (e) => {
     settings.setBreakMinutes(e.target.value);
+
+    const templateLabel = settings.templateLabel;
+
+    const templatesCopy = JSON.parse(JSON.stringify(settings.templates));
+
+    templatesCopy[templateLabel].shortBreak = e.target.value;
+
+    settings.setTemplates(templatesCopy);
+
+    // console.log(settings.templates);
   };
 
   const handleLongBreakChange = (e) => {
     settings.setLongBreakMinutes(e.target.value);
+
+    const templateLabel = settings.templateLabel;
+
+    const templatesCopy = JSON.parse(JSON.stringify(settings.templates));
+
+    templatesCopy[templateLabel].longBreak = e.target.value;
+
+    settings.setTemplates(templatesCopy);
+
+    // console.log(settings.templates);
   };
 
   const handleCycleChange = (e) => {
     settings.setCycle(e.target.value);
+
+    const templateLabel = settings.templateLabel;
+
+    const templatesCopy = JSON.parse(JSON.stringify(settings.templates));
+
+    templatesCopy[templateLabel].cycle = e.target.value;
+
+    settings.setTemplates(templatesCopy);
+
+    // console.log(settings.templates);
   };
 
   return (
     <div id="settings">
+      <div className="template-settings">
+        <TemplateLabels />
+        <EditIcon />
+        {/* <DeleteForeverIcon /> */}
+        <DeleteModal />
+        <AddCircleIcon />
+      </div>
+
       <div className="sliders">
         Focus Minutes
         <TimeSlider

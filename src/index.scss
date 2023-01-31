@@ -211,3 +211,24 @@ main {
     }
   }
 }
+
+.template-settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    font-size: 2rem;
+
+    cursor: pointer;
+  }
+}
+
+.confirmation {
+  margin-top: 1rem;
+
+  button {
+    font-size: 1.2rem;
+    margin: 0 1rem;
+  }
+}

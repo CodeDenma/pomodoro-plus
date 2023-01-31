@@ -10,7 +10,7 @@ import SettingsContext from '../context/SettingsContext.jsx';
 export default function TemplateLabels() {
   const settings = useContext(SettingsContext);
 
-  const [templateLabel, setTemplateLabel] = useState('Default');
+  // const [templateLabel, setTemplateLabel] = useState('Default');
 
   const formControlSX = {
     m: 1,
@@ -26,7 +26,7 @@ export default function TemplateLabels() {
     settings.changeTemplate(templateObject);
     settings.setCount(1);
 
-    setTemplateLabel(templateName);
+    settings.setTemplateLabel(templateName);
   };
 
   const menuItems = Object.keys(settings.templates).map((name, index) => {
@@ -38,7 +38,7 @@ export default function TemplateLabels() {
       <FormControl sx={formControlSX}>
         <InputLabel id="demo-simple-select-helper-label">Template</InputLabel>
         <Select
-          value={templateLabel}
+          value={settings.templateLabel}
           label="Template"
           onChange={handleChange}
         // onMouseEnter={() => console.log('hello world')}

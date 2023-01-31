@@ -69,15 +69,17 @@ function App() {
       longBreak: 15,
       cycle: 4
     },
-    // Test: {
-    //   focus: 50,
-    //   shortBreak: 10,
-    //   longBreak: 30,
-    //   cycle: 2
-    // }
+    Test: {
+      focus: 50,
+      shortBreak: 10,
+      longBreak: 30,
+      cycle: 2
+    }
   };
 
   const [templates, setTemplates] = useState(defaultTemplates);
+  const [templateLabel, setTemplateLabel] = useState('Default');
+
 
   function changeTemplate({ focus, shortBreak, longBreak, cycle }) {
     setFocusMinutes(focus);
@@ -107,7 +109,9 @@ function App() {
 
     changeTemplate,
     templates,
-    setTemplates
+    setTemplates,
+    templateLabel,
+    setTemplateLabel
   };
 
   return (
