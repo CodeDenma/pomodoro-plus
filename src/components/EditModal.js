@@ -52,17 +52,17 @@ export default function DeleteModal() {
 
   function handleEdit(e) {
     const templateLabel = settings.templateLabel;
+    const newTemplate = settings.templates[templateLabel];
 
     const templatesCopy = JSON.parse(JSON.stringify(settings.templates));
 
     delete templatesCopy[templateLabel];
+    templatesCopy[newName] = newTemplate;
 
     settings.setTemplates(templatesCopy);
 
-    const defaultTemplate = settings.templates.Default;
-
-    settings.changeTemplate(defaultTemplate);
-    settings.setTemplateLabel('Default');
+    settings.changeTemplate(newTemplate);
+    settings.setTemplateLabel(newName);
 
     return handleClose();
   }
