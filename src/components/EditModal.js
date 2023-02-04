@@ -4,29 +4,15 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import EditIcon from "@mui/icons-material/Edit";
+
 
 import { useContext } from 'react';
 import SettingsContext from "../context/SettingsContext.jsx";
 
 // import Button from '@mui/material/Button';
+import EditTemplateTextField from './EditTemplateTextField.js';
 
-// const style = {
-//   position: 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 400,
-//   bgcolor: 'background.paper',
-//   border: '2px solid #000',
-//   // borderRadius: '2%',
-//   boxShadow: 24,
-//   p: 4,
-//   display: 'flex',
-//   flexDirection: 'column',
-//   justifyContent: 'center',
-//   alignItems: 'center'
-// };
 const style = {
   position: 'absolute',
   top: '50%',
@@ -44,26 +30,27 @@ const style = {
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  color: '#fff'
 };
 
 export default function DeleteModal() {
+  const settings = useContext(SettingsContext);
+
   const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
   const handleOpen = () => {
     const templateLabel = settings.templateLabel;
 
     if (templateLabel === 'Default') {
-      alert('You cannot delete the Default Template');
+      alert('You cannot edit the Default Template');
       return handleClose();
     }
 
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
 
-  const settings = useContext(SettingsContext);
+  const [newName, setNewName] = React.useState('');
 
-  function handleDelete(e) {
+  function handleEdit(e) {
     const templateLabel = settings.templateLabel;
 
     const templatesCopy = JSON.parse(JSON.stringify(settings.templates));
@@ -83,7 +70,7 @@ export default function DeleteModal() {
   return (
     <div>
       {/* <Button onClick={handleOpen}> */}
-      <DeleteForeverIcon onClick={handleOpen} />
+      <EditIcon onClick={handleOpen} />
       {/* </Button> */}
       <Modal
         open={open}
@@ -92,13 +79,13 @@ export default function DeleteModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div>
-            Are you sure you want to delete the&nbsp;<b>{settings.templateLabel}</b>&nbsp; template?
+          <div id='edit-template-name'>
+            <EditTemplateTextField newName={newName} setNewName={setNewName} />
           </div>
 
           <div className='confirmation'>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleDelete}>Confirm</Button>
+            <Button onClick={handleEdit}>Confirm</Button>
           </div>
         </Box>
       </Modal>

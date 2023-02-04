@@ -10,9 +10,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import TemplateLabels from "./TemplateLabels.js";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
+// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import DeleteModal from "./DeleteModal.js";
+import AddModal from "./AddModal.js";
+import EditModal from "./EditModal.js";
 
 function Settings() {
   const settings = useContext(SettingsContext);
@@ -117,10 +120,14 @@ function Settings() {
     <div id="settings">
       <div className="template-settings">
         <TemplateLabels />
-        <EditIcon />
-        {/* <DeleteForeverIcon /> */}
-        <DeleteModal />
-        <AddCircleIcon />
+        <div className="template-controls">
+          {/* <EditIcon /> */}
+          <EditModal />
+          {/* <DeleteForeverIcon /> */}
+          <DeleteModal />
+          {/* <AddCircleIcon /> */}
+          <AddModal />
+        </div>
       </div>
 
       <div className="sliders">
