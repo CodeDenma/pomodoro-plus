@@ -9,5 +9,6 @@
   "editor.parameterHints.enabled": true,
   "editor.suggest.showTypeParameters": true,
   "outline.showTypeParameters": true,
-  "breadcrumbs.showTypeParameters": true
+  "breadcrumbs.showTypeParameters": true,
+  "terminal.integrated.rightClickBehavior": "default"
 }
