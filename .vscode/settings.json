@@ -10,5 +10,5 @@
   "editor.suggest.showTypeParameters": true,
   "outline.showTypeParameters": true,
   "breadcrumbs.showTypeParameters": true,
-  "terminal.integrated.rightClickBehavior": "default"
+  "terminal.integrated.rightClickBehavior": "selectWord"
 }
